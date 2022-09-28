@@ -9,11 +9,11 @@
 > closely resemble the matching features correctly. However, this match
 > list will also contain some incorrectly matched features.
 
-![](vertopal_fc3120865ac9415693acbe037064620c/media/image1.png)
+![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image1.png)
 
-![](vertopal_fc3120865ac9415693acbe037064620c/media/image2.png)
+![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image2.png)
 
-![](vertopal_fc3120865ac9415693acbe037064620c/media/image3.png)
+![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image3.png)
 
 > b\) RANSAC: To eliminate incorrectly matched features, we use RANSAC.
 >
@@ -25,11 +25,11 @@
 > with most inliers and save the fundamental matrix formed using these 8
 > matches.
 
-![](vertopal_fc3120865ac9415693acbe037064620c/media/image4.png)
+![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image4.png)
 
-![](vertopal_fc3120865ac9415693acbe037064620c/media/image5.png)
+![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image5.png)
 
-![](vertopal_fc3120865ac9415693acbe037064620c/media/image6.png)
+![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image6.png)
 
 > c\) Essential matrix: Using the fundamental matrix and camera
 > matrices, we calculate the essential matrix:\
@@ -38,11 +38,11 @@
 > d\) Camera pose: With essential matrix, we find the four possible
 > camera poses using
 
-![](vertopal_fc3120865ac9415693acbe037064620c/media/image7.png)
+![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image7.png)
 
 > where U, V are found using the SVD of E, and W is
 
-![](vertopal_fc3120865ac9415693acbe037064620c/media/image8.png)
+![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image8.png)
 
 > e\) Cheirality condition: However, the correct camera pose is one
 > which has all the Z values of triangulation as positive. Since there
@@ -81,71 +81,71 @@ so as to save computation time.
 **4. Depth map**\
 The depth map is calculated using
 
-> ![](vertopal_fc3120865ac9415693acbe037064620c/media/image9.png)
+> ![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image9.png)
 
 **Results**\
 **1. Curule dataset**
 
-![](vertopal_fc3120865ac9415693acbe037064620c/media/image10.png)
+![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image10.png)
 
-> ![](vertopal_fc3120865ac9415693acbe037064620c/media/image11.png)
+> ![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image11.png)
 >
-> ![](vertopal_fc3120865ac9415693acbe037064620c/media/image12.png)
+> ![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image12.png)
 
-![](vertopal_fc3120865ac9415693acbe037064620c/media/image13.png)
+![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image13.png)
 
-> ![](vertopal_fc3120865ac9415693acbe037064620c/media/image14.png)
+> ![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image14.png)
 
-![](vertopal_fc3120865ac9415693acbe037064620c/media/image15.png)
+![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image15.png)
 
 Disparity map: gray(above) and heat(below)
 
-> ![](vertopal_fc3120865ac9415693acbe037064620c/media/image16.png)
+> ![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image16.png)
 >
-> ![](vertopal_fc3120865ac9415693acbe037064620c/media/image17.png)
+> ![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image17.png)
 
 Depth map: gray(above) and heat(below)
 
 > **2. Octagon dataset**
 
-![](vertopal_fc3120865ac9415693acbe037064620c/media/image18.png)
+![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image18.png)
 
-> ![](vertopal_fc3120865ac9415693acbe037064620c/media/image19.png)
+> ![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image19.png)
 >
-> ![](vertopal_fc3120865ac9415693acbe037064620c/media/image20.png)
+> ![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image20.png)
 
-![](vertopal_fc3120865ac9415693acbe037064620c/media/image21.png)
+![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image21.png)
 
-![](vertopal_fc3120865ac9415693acbe037064620c/media/image22.png)
+![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image22.png)
 
-> ![](vertopal_fc3120865ac9415693acbe037064620c/media/image23.png)
+> ![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image23.png)
 
 Disparity map: gray(left) and heat(right)
 
-> ![](vertopal_fc3120865ac9415693acbe037064620c/media/image24.png)
+> ![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image24.png)
 >
-> ![](vertopal_fc3120865ac9415693acbe037064620c/media/image25.png)
+> ![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image25.png)
 
 Depth map: gray(left) and heat(right)
 
 > **3. Pendulum dataset**
 >
-> ![](vertopal_fc3120865ac9415693acbe037064620c/media/image26.png)
+> ![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image26.png)
 
-> ![](vertopal_fc3120865ac9415693acbe037064620c/media/image27.png)
+> ![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image27.png)
 
-> ![](vertopal_fc3120865ac9415693acbe037064620c/media/image28.png)
+> ![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image28.png)
 
-![](vertopal_fc3120865ac9415693acbe037064620c/media/image29.png)
+![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image29.png)
 
-![](vertopal_fc3120865ac9415693acbe037064620c/media/image30.png)
+![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image30.png)
 
-> ![](vertopal_fc3120865ac9415693acbe037064620c/media/image31.png)
+> ![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image31.png)
 
 Disparity map: gray(above) and heat(below)
 
-> ![](vertopal_fc3120865ac9415693acbe037064620c/media/image32.png)
+> ![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image32.png)
 >
-> ![](vertopal_fc3120865ac9415693acbe037064620c/media/image33.png)
+> ![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image33.png)
 
 Depth map: gray(above) and heat(below)
