@@ -1,13 +1,19 @@
-> **Depth map from stereo camera**
-> 
->
-> **1. Calibration**\
-> a) Features on the two images are found using SIFT detector. Then,\
-> cv2.Bfmatcher is used to match the extracted features, and then this
-> list of all matches is sorted based on distance parameter of Dmatch
-> object. Out of all the matches, first n matches are taken which will
-> closely resemble the matching features correctly. However, this match
-> list will also contain some incorrectly matched features.
+# Depth from Stereo Camera
+Computing depth using stereo images
+To execute the program for depth and disparity maps:
+1. Place the images under data/dataset_namealong with calib.txt
+2. Modify depth_from_stereo.py images_dir to point to this dataset path
+3. Run `python3 depth_from_stereo.py`.
+
+### Steps
+1. Calibration
+
+a) Features on the two images are found using SIFT detector. Then,
+cv2.Bfmatcher is used to match the extracted features, and then this
+list of all matches is sorted based on distance parameter of Dmatch
+object. Out of all the matches, first n matches are taken which will
+closely resemble the matching features correctly. However, this match
+list will also contain some incorrectly matched features.
 
 ![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image1.png)
 
@@ -15,15 +21,15 @@
 
 ![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image3.png)
 
-> b\) RANSAC: To eliminate incorrectly matched features, we use RANSAC.
->
-> First, 8 random indices are randomly selected, and the matches at
-> these indices are found. Then, the points corresponding to these 8
-> matches in the respective images are used to find the fundamental
-> matrix using the eightpoint algorithm. We run RANSAC for 1000
-> iterations, and calculate the inlier every run, and select the matches
-> with most inliers and save the fundamental matrix formed using these 8
-> matches.
+b\) RANSAC: To eliminate incorrectly matched features, we use RANSAC.
+
+First, 8 random indices are randomly selected, and the matches at
+these indices are found. Then, the points corresponding to these 8
+matches in the respective images are used to find the fundamental
+matrix using the eightpoint algorithm. We run RANSAC for 1000
+iterations, and calculate the inlier every run, and select the matches
+with most inliers and save the fundamental matrix formed using these 8
+matches.
 
 ![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image4.png)
 
@@ -31,30 +37,30 @@
 
 ![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image6.png)
 
-> c\) Essential matrix: Using the fundamental matrix and camera
-> matrices, we calculate the essential matrix:\
-> E = K2.T . F . K1
->
-> d\) Camera pose: With essential matrix, we find the four possible
-> camera poses using
+c\) Essential matrix: Using the fundamental matrix and camera
+matrices, we calculate the essential matrix:\
+E = K2.T . F . K1
+
+d\) Camera pose: With essential matrix, we find the four possible
+camera poses using
 
 ![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image7.png)
 
-> where U, V are found using the SVD of E, and W is
+where U, V are found using the SVD of E, and W is
 
 ![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image8.png)
 
-> e\) Cheirality condition: However, the correct camera pose is one
-> which has all the Z values of triangulation as positive. Since there
-> can be noise, there can be some Z values as negative in the
-> triangulated points. Hence, we find the pose with maximum Z value.
->
-> **2. Rectification**\
-> Using the points in the two images and the fundamental matrix,\
-> homographies are found for the two images which warp them to a common
-> plane. This is done using cv2.stereoRectifyUncalibrated( ).
-> Triangulated points are also perspective-transformed accordingly. We
-> use
+e\) Cheirality condition: However, the correct camera pose is one
+which has all the Z values of triangulation as positive. Since there
+can be noise, there can be some Z values as negative in the
+triangulated points. Hence, we find the pose with maximum Z value.
+
+**2. Rectification**\
+Using the points in the two images and the fundamental matrix,\
+homographies are found for the two images which warp them to a common
+plane. This is done using cv2.stereoRectifyUncalibrated( ).
+Triangulated points are also perspective-transformed accordingly. We
+use
 
 cv2.warpPerspective and cv2.perspectiveTransform( ). The fundamental
 matrix is also rectified using\
@@ -81,71 +87,71 @@ so as to save computation time.
 **4. Depth map**\
 The depth map is calculated using
 
-> ![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image9.png)
+![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image9.png)
 
 **Results**\
 **1. Curule dataset**
 
 ![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image10.png)
 
-> ![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image11.png)
->
-> ![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image12.png)
+![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image11.png)
+
+![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image12.png)
 
 ![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image13.png)
 
-> ![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image14.png)
+![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image14.png)
 
 ![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image15.png)
 
 Disparity map: gray(above) and heat(below)
 
-> ![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image16.png)
->
-> ![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image17.png)
+![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image16.png)
+
+![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image17.png)
 
 Depth map: gray(above) and heat(below)
 
-> **2. Octagon dataset**
+**2. Octagon dataset**
 
 ![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image18.png)
 
-> ![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image19.png)
->
-> ![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image20.png)
+![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image19.png)
+
+![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image20.png)
 
 ![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image21.png)
 
 ![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image22.png)
 
-> ![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image23.png)
+![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image23.png)
 
 Disparity map: gray(left) and heat(right)
 
-> ![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image24.png)
->
-> ![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image25.png)
+![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image24.png)
+
+![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image25.png)
 
 Depth map: gray(left) and heat(right)
 
-> **3. Pendulum dataset**
->
-> ![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image26.png)
+**3. Pendulum dataset**
 
-> ![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image27.png)
+![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image26.png)
 
-> ![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image28.png)
+![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image27.png)
+
+![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image28.png)
 
 ![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image29.png)
 
 ![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image30.png)
 
-> ![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image31.png)
+![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image31.png)
 
 Disparity map: gray(above) and heat(below)
 
-> ![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image32.png)
->
-> ![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image33.png)
+![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image32.png)
+
+![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image33.png)
 
 Depth map: gray(above) and heat(below)
