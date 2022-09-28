@@ -15,7 +15,7 @@ object. Out of all the matches, first n matches are taken which will
 closely resemble the matching features correctly. However, this match
 list will also contain some incorrectly matched features.
 
-![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image1.png)
+![img1](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image1.png)
 
 ![](https://github.com/niteshjha08/Depth-From-Stereo_Camera/tree/main/media/media/image2.png)
 
